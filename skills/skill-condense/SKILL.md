@@ -39,7 +39,7 @@ Output a table with these columns: file, load cost, size, verdict, top signal, e
 
 ## Mode B: Condense One File (`/skill-condense <skill-name | path>`)
 
-1. **Resolve the target.** A bare name means `.claude/skills/<name>/SKILL.md` in the project, else `~/.claude/skills/<name>/SKILL.md`. If the file came from a plugin or another author's repository, stop: an update would overwrite the edit, so suggest the change upstream instead.
+1. **Resolve the target.** A bare name means `.claude/skills/<name>/SKILL.md` in the project, else `~/.claude/skills/<name>/SKILL.md`. Skills installed from a plugin are out of scope. If the file came from another author (a `LICENSE` or notices file naming someone else, or a git remote that is not the user's own), stop: that author's next update would overwrite the edit, so suggest the change upstream instead.
 2. **Classify every block** into one of the buckets in `classification.md`, which is in this skill's folder.
 3. **Write the rewrite to a scratch copy,** never over the original yet.
    - Keep every rule.
@@ -54,13 +54,13 @@ Output a table with these columns: file, load cost, size, verdict, top signal, e
    - If the user's everyday model differs from this session's, pass that model to the subagent. A stronger verifier approves text that only a stronger model can follow.
 5. **Fix and re-check.** Fix every item the check returns, then run the check again on the fixed rewrite. A fix is an edit like any other and can break something new. Repeat until the check returns PASS.
 6. **Apply.**
-   - If the project is not under git, first save the original as `<file>.before.md` beside it so the change can be undone.
-   - Replace the original with the rewrite.
-   - Report the before and after sizes (lines and bytes), the PASS verdict, and any judgment calls the checker flagged.
+   - If the project is not under git, first save the original as `<file>.bak` beside it so the change can be undone. The `.bak` extension keeps Claude Code from loading the copy as a second rules file.
+   - Replace the original with the rewrite, and create any new supporting file the rewrite points to.
+   - Report the before and after sizes (lines and bytes), the PASS verdict, and your judgment calls: what you removed as redundant and what you moved to another file.
    - Condense one file per run, so each change can be reviewed or reverted on its own.
 
 ## Guardrails
 
-- Never condense a skill's frontmatter (`name`, `description`, `argument-hint`). The description decides when Claude uses the skill. A shorter one can pass the meaning check and still make the skill stop firing on requests it used to catch.
+- Never change a file's frontmatter: a skill's `name`, `description`, and `argument-hint`, or a rules file's `paths:`. These decide when the file loads. A skill's description decides when Claude uses the skill. A shorter one can pass the meaning check and still make the skill stop firing on requests it used to catch.
 - Never soften a rule while compressing around it: must stays must, never stays never.
 - Never reword exact content: templates, required parameters, safety rules, and anything a script parses.

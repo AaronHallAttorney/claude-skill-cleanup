@@ -1,0 +1,35 @@
+name: Bug report
+description: A skill did something wrong or unexpected.
+body:
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Skill
+      options:
+        - skill-audit
+        - skill-condense
+    validations:
+      required: true
+  - type: input
+    id: command
+    attributes:
+      label: Command you ran
+      placeholder: /skill-audit my-skill report
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened, and what you expected
+    validations:
+      required: true
+  - type: textarea
+    id: report
+    attributes:
+      label: Report or output (optional)
+      description: The relevant part of the report or the session output.
+  - type: input
+    id: version
+    attributes:
+      label: Claude Code version
+      placeholder: output of `claude --version`

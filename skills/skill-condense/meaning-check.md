@@ -22,8 +22,8 @@ paragraph carrying unrelated content, stripped of the trigger condition that tol
 operator when it applies, or moved behind a pointer the operator has no reason to
 follow at that step.
 
-Check the frontmatter separately: name, description, and argument-hint must be
-byte-identical to ORIGINAL.
+Check the frontmatter separately: the whole block between the opening and closing
+--- lines must be byte-identical to ORIGINAL.
 
 Return PASS only if every item survives AND none lost salience AND the frontmatter
 is unchanged. Otherwise return two numbered lists, DROPPED/WEAKENED and SALIENCE,

@@ -39,6 +39,8 @@ The following three checks are quoted from skill-stocktake by shimo4228 (https:/
 > - **Is the defer bidirectional?** A one-directional defer (canon claims the subordinate, subordinate says nothing) means the subordinate **loads alone without its correction** whenever its own description wins the trigger. A broad description on a subordinate file turns a latent contradiction into an active one.
 > - **Do the two files presuppose the same author / project model?** Imported skills (`origin` = an external repo) carry their author's premises. A conflict of premises reads as a normal-looking instruction and survives every per-file check.
 
+Judge provenance here from what is on disk: a `LICENSE` or notices file naming another author, or a git remote that is not the user's own.
+
 ## Report
 
 Use three sections: `## Load graph`, `## Findings`, and `## Not findings`.

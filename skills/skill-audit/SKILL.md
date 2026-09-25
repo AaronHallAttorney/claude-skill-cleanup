@@ -17,7 +17,7 @@ A finding is a lead until the fix pass confirms it. A reader who fixes its own f
 
 ## Arguments
 
-- `<skill>`: the skill's folder name. Look first for `.claude/skills/<skill>/SKILL.md` in the current project, then `~/.claude/skills/<skill>/SKILL.md`. If neither exists, list the skills you can see and stop.
+- `<skill>`: the skill's folder name. Look first for `.claude/skills/<skill>/SKILL.md` in the current project, then `~/.claude/skills/<skill>/SKILL.md`. If neither exists, list the skills you can see and stop. Skills installed from a plugin are out of scope: their updates would overwrite any fix, so send findings to the plugin's author.
 - `report`: run the read pass only.
 - `fix`: run the fix pass only, on the newest open report for `<skill>`.
 - No second word: run the read pass, then the fix pass if the report has findings.
@@ -26,8 +26,8 @@ A finding is a lead until the fix pass confirms it. A reader who fixes its own f
 
 ## Read Pass
 
-1. Resolve the skill folder and the report path. If today's report already exists with a `## Findings` section, skip to the fix pass.
-2. Read `audit-prompt.md` (in this skill's folder). Replace `{skill}`, `{skill_dir}`, `{report_path}`, and `{project_root}` with their values.
+1. Resolve the skill folder and the report path. If today's report already exists with a `## Findings` section and no `## Disposition` heading, and the argument is not `report`, skip to the fix pass.
+2. Read `audit-prompt.md` (in this skill's folder). Replace `{skill}`, `{skill_dir}`, `{report_path}`, and `{project_root}` with their values. `{project_root}` is the current project root for a project skill, or `~/.claude/` for a user-level skill.
 3. Launch one subagent (Agent tool, general-purpose type) with the rendered prompt as its whole task. Pass it nothing from this conversation; its independence is the point.
 4. When it returns, confirm the report file exists and has `## Findings`. If the subagent failed or wrote nothing, say so and stop.
 5. If the report says "None." under Findings, tell the user the skill is clean and stop. If the argument was `report`, summarize the findings in a few lines and stop.

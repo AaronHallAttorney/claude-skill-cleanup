@@ -5,7 +5,9 @@ Two Claude Code skills for maintaining your other skills:
 - **`skill-audit`** finds contradictions between a skill's files, rules that nothing ever loads, and pointers to paths, flags, headings, or skills that no longer exist. It then fixes what it finds.
 - **`skill-condense`** shrinks a bloated skill, rules file, or `CLAUDE.md`. A separate check proves that no rule was lost.
 
-They also work on `CLAUDE.md` and rules files. Run the audit first, because condensing a wrong rule only makes it shorter.
+skill-condense also works on `CLAUDE.md` and rules files. Run the audit first, because condensing a wrong rule only makes it shorter.
+
+See [`examples/`](examples/) for a real audit report and a condense before and after.
 
 ## Why Skills Need Upkeep
 
@@ -44,7 +46,7 @@ For the strongest separation between the two passes, run `report`, start a new s
 3. A fresh subagent that never saw the rewriting lists every rule, exception, and "must" or "never" in the original, and confirms that each one survived. It also checks that each surviving rule will still be followed. A rule can survive word for word and still stop firing, for example when it is buried in an unrelated paragraph or stripped of the condition that said when it applies.
 4. Every fix is checked again, because a fix can break something too. The original is replaced only after the check passes.
 
-A skill's `description` is never condensed, because it decides when Claude uses the skill.
+Frontmatter is never changed. A skill's `description` decides when Claude uses the skill, and a rules file's `paths:` decides when it loads.
 
 ## Install
 
@@ -61,8 +63,8 @@ Or copy either folder under `skills/` into `~/.claude/skills/` (every project) o
 
 ## Notes
 
-- Neither skill edits a skill that came from a plugin or another author's repository, because an update would overwrite the edit. Both report what they find so you can send it upstream.
-- If your project uses git, review the changes as a diff before you commit them. If it does not, `skill-condense` saves the original beside the rewrite as `<file>.before.md`.
+- Both skills work on the skills in your own skills folders. They do not edit skills installed from a plugin or copied from another author's repository, because that author's next update would overwrite the edit. Send those findings upstream instead.
+- If your project uses git, review the changes as a diff before you commit them. If it does not, `skill-condense` saves the original beside the rewrite as `<file>.bak`.
 - Both skills use subagents, so they draw on your usage like any other Claude Code task.
 
 ## Credits

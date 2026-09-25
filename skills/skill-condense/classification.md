@@ -4,8 +4,8 @@ Sort every block of the target file into one bucket before rewriting.
 
 | Bucket | What belongs here | Action |
 |---|---|---|
-| **Keep verbatim** | Hard rules (must, never, stop), safety and permission gates, required parameter sets, templates meant to be pasted exactly, text a script parses, live pointers to other files | Leave untouched. Strip narration around them, never the rule itself. |
-| **Keep verbatim: frontmatter** | `name`, `description`, `argument-hint` | Never condense. The description decides when the skill fires. |
+| **Keep verbatim** | Hard rules (must, never, stop), safety and permission gates, required parameter sets, templates meant to be pasted exactly, reference tables, text a script parses, live pointers to other files | Leave untouched. Strip narration around them, never the rule itself. |
+| **Keep verbatim: frontmatter** | The whole frontmatter block: a skill's `name`, `description`, `argument-hint`; a rules file's `paths:` | Never change. It decides when the file loads and when the skill fires. |
 | **Condense** | Explanation, restatement of a rule already given, multi-sentence rationale | Reduce to the rule in one line, plus a pointer if the detail lives elsewhere. |
 | **Remove or relocate** | Incident stories, dated notes, "why this exists" sections, worked examples the rules already cover | Remove it. If the text is still useful to a human reader, move it to a separate notes file the skill never loads. If a step needs it only in a rare mode, move it to a supporting file and leave a one-line pointer saying when to read it. |
 

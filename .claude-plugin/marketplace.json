@@ -9,7 +9,7 @@
     {
       "name": "claude-skill-cleanup",
       "description": "Audit and condense Claude Code skills: find contradictions, unreachable rules, and stale pointers, and shrink bloated instructions without losing a rule.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "source": "./",
       "author": {
         "name": "Aaron Hall",
