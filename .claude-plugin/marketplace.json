@@ -1,0 +1,20 @@
+{
+  "name": "claude-skill-cleanup",
+  "description": "Skill maintenance for Claude Code: audit and condense your skills.",
+  "owner": {
+    "name": "Aaron Hall",
+    "url": "https://aaronhall.com"
+  },
+  "plugins": [
+    {
+      "name": "claude-skill-cleanup",
+      "description": "Audit and condense Claude Code skills: find contradictions, unreachable rules, and stale pointers, and shrink bloated instructions without losing a rule.",
+      "version": "1.0.0",
+      "source": "./",
+      "author": {
+        "name": "Aaron Hall",
+        "url": "https://aaronhall.com"
+      }
+    }
+  ]
+}

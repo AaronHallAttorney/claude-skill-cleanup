@@ -1,0 +1,13 @@
+{
+  "name": "claude-skill-cleanup",
+  "description": "Audit and condense Claude Code skills: find contradictions, unreachable rules, and stale pointers, and shrink bloated instructions without losing a rule.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Aaron Hall",
+    "url": "https://aaronhall.com"
+  },
+  "homepage": "https://github.com/AaronHallAttorney/claude-skill-cleanup",
+  "repository": "https://github.com/AaronHallAttorney/claude-skill-cleanup",
+  "license": "MIT",
+  "keywords": ["skills", "claude-code", "audit", "lint", "cleanup", "condense", "context"]
+}
